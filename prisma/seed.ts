@@ -5,12 +5,12 @@ const prisma = new PrismaClient()
 async function main() {
   await prisma.paymentMethods.upsert({
     where: {
-      key: 'boleto'
+      key: 'voucher'
     },
     update: {},
     create: {
-      key: 'boleto',
-      name: 'Boleto'
+      key: 'voucher',
+      name: 'Voucher'
     }
   })
   await prisma.paymentMethods.upsert({
@@ -30,7 +30,7 @@ async function main() {
     update: {},
     create: {
       key: 'cash',
-      name: 'Dinheiro'
+      name: 'Cash'
     }
   })
   await prisma.paymentMethods.upsert({
@@ -40,7 +40,7 @@ async function main() {
     update: {},
     create: {
       key: 'deposit',
-      name: 'Depósito Bancário'
+      name: 'Bank Deposit'
     }
   })
   await prisma.paymentMethods.upsert({
@@ -50,7 +50,7 @@ async function main() {
     update: {},
     create: {
       key: 'card',
-      name: 'Cartão de Crédito'
+      name: 'Credit Card'
     }
   })
 }

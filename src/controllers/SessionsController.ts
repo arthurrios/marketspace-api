@@ -19,13 +19,13 @@ export class SessionsController {
     })
 
     if (!user) {
-      throw new AppError("E-mail e/ou senha incorreta.", 404);
+      throw new AppError("Incorrect email or password.", 404);
     }
 
     const passwordMatched = await compare(password, user.password);
 
     if (!passwordMatched) {
-      throw new AppError("E-mail e/ou senha incorreta.", 404);
+      throw new AppError("Incorrect email or password.", 404);
     }
 
     const generateTokenProvider = new GenerateToken();

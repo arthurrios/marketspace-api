@@ -21,21 +21,21 @@ export class ProductImagesController {
     })
 
     if (!productFiles || productFiles?.length === 0 || !Array.isArray(productFiles)) {
-      throw new AppError("É obrigatório o envio de imagens.")
+      throw new AppError("Uploading images is mandatory.")
     }
     
     if (!product) {
       productFiles.forEach(async (productFilename) => {
         await diskStorage.deleteFile(productFilename.path)
       })
-      throw new AppError("Produto não encontrado.", 404);
+      throw new AppError("Product not found.", 404);
     }
 
     if (product.user_id !== userId) {
       productFiles.forEach(async (productFilename) => {
         await diskStorage.deleteFile(productFilename.path)
       })
-      throw new AppError("Somente o dono do anúncio pode gerenciar as imagens do produto.", 401);
+      throw new AppError("Only the product owner may manage its pictures.", 401);
     }
 
     const productImages: ProductImages[] = []
@@ -53,7 +53,7 @@ export class ProductImagesController {
         productImages.push(productImage)
       }
     } else {
-      throw new AppError("Formato de formulário de imagens inválido.");
+      throw new AppError("Invalid image format.");
     }
 
     return response.status(201).json(productImages);
@@ -66,7 +66,7 @@ export class ProductImagesController {
     const diskStorage = new DiskStorage();
 
     if (productImagesIds.length === 0) {
-      throw new AppError("É obrigatório o envio dos ids das imagens a serem deletadas.")
+      throw new AppError("Images id is mandatory so it can be deleted.")
     }
 
     const productImages = await prisma.productImages.findMany({
@@ -85,12 +85,12 @@ export class ProductImagesController {
     })
     
     if (productImages.length !== productImagesIds.length) {
-      throw new AppError("Imagens não encontradas.", 404);
+      throw new AppError("Images not found.", 404);
     }
 
     for (const productImage of productImages) {
       if (productImage.product.user_id !== userId) {
-        throw new AppError("Somente o dono do anúncio pode gerenciar as imagens do produto.", 401);
+        throw new AppError("Only the product owner may manage its pictures.", 401);
       }
     }
 

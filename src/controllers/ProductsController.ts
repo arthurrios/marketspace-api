@@ -37,7 +37,7 @@ export class ProductsController {
     })
 
     if (!product) {
-      throw new AppError('Produto não encontrado.', 404);
+      throw new AppError('Product not found.', 404);
     }
 
     return response.json(product);
@@ -111,27 +111,27 @@ export class ProductsController {
     const userId = request.user.id
 
     if (!name) {
-      throw new AppError("O nome do produto é obrigatório.")
+      throw new AppError("Product name is required.")
     }
 
     if (!description) {
-      throw new AppError("A descrição do produto é obrigatória.")
+      throw new AppError("Product description is required.")
     }
 
     if (typeof is_new === 'string' ? !is_new : typeof is_new === undefined) {
-      throw new AppError("A condição (novo ou usado) do produto é obrigatória.")
+      throw new AppError("Product condition (new or used) is required.")
     }
 
     if (!price) {
-      throw new AppError("O preço do produto é obrigatório.")
+      throw new AppError("Product price is required.")
     }
 
     if (typeof accept_trade === 'string' ? !accept_trade : typeof accept_trade === undefined) {
-      throw new AppError("A condição de troca é obrigatória.")
+      throw new AppError("Trade condition is required.")
     }
 
     if (!Array.isArray(payment_methods) || payment_methods.length === 0) {
-      throw new AppError("Os métodos de pagamento são obrigatórios")
+      throw new AppError("Payment methods are required.")
     }
 
     const arePaymentsMethodsValid = await prisma.paymentMethods.findMany({
@@ -143,7 +143,7 @@ export class ProductsController {
     })
 
     if (arePaymentsMethodsValid.length !== payment_methods.length) {
-      throw new AppError("Um ou mais métodos de pagamento são inválidos.")
+      throw new AppError("One or more payment methods are invalid.")
     }
 
     const product = await prisma.products.create({
@@ -191,11 +191,11 @@ export class ProductsController {
     })
 
     if (!product) {
-      throw new AppError("O produto a ser atualizado não foi encontrado.", 404)
+      throw new AppError("Product to be updated not found.", 404)
     }
 
     if (product.user_id !== userId) {
-      throw new AppError("O usuário não tem permissão para atualizar o produto", 401)
+      throw new AppError("User does not have permission to update the product", 401)
     }
 
     let newPaymentsMethods: string[] | undefined
@@ -203,7 +203,7 @@ export class ProductsController {
 
     if (Array.isArray(payment_methods)) {
       if (payment_methods.length === 0) {
-        throw new AppError("O produto precisa ter pelo menos 1 método de pagamento.")
+        throw new AppError("The product must have at least 1 payment method.")
       }
 
       const arePaymentsMethodsValid = await prisma.paymentMethods.findMany({
@@ -215,7 +215,7 @@ export class ProductsController {
       })
   
       if (arePaymentsMethodsValid.length !== payment_methods.length) {
-        throw new AppError("Um ou mais métodos de pagamento são inválidos.")
+        throw new AppError("One or more payment methods are invalid.")
       }
 
       oldPaymentsMethods = product.payment_methods.filter(payment_method => !payment_methods.includes(payment_method.key)).map(payment_method => payment_method.key)
@@ -270,12 +270,13 @@ export class ProductsController {
     })
 
     if (!product) {
-      throw new AppError("O produto a ser atualizado não foi encontrado.", 404)
+      throw new AppError("Product to be updated not found.", 404)
     }
 
     if (product.user_id !== userId) {
-      throw new AppError("O usuário não tem permissão para atualizar o produto", 401)
+      throw new AppError("User does not have permission to update the product", 401)
     }
+
 
     await prisma.products.update({
       data: {
@@ -309,11 +310,11 @@ export class ProductsController {
     })
 
     if (!product) {
-      throw new AppError("O produto a ser removido não foi encontrado.", 404)
+      throw new AppError("Product to be removed not found.", 404)
     }
 
     if (product.user_id !== userId) {
-      throw new AppError("O usuário não tem permissão para atualizar o produto.", 401)
+      throw new AppError("User does not have permission to update product.", 401)
     }
 
     for (const productImage of product.product_images) {

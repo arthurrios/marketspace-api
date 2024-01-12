@@ -35,12 +35,12 @@ export class UsersController {
     const diskStorage = new DiskStorage();
 
     if (!avatarFile) {
-      throw new AppError("É obrigatório o envio de uma imagem.")
+      throw new AppError("Uploading avatar file is required.")
     }
 
     if (!name || !email || !password || !tel) {
       await diskStorage.deleteFile(avatarFile.path)
-      throw new AppError("Informe todos os campos de texto (nome, email, telefone e senha).");
+      throw new AppError("Enter all fields (name, email, phone and password).");
     }
     
     const checkUserEmailExists = await prisma.users.findUnique({
@@ -51,7 +51,7 @@ export class UsersController {
 
     if (checkUserEmailExists) {
       await diskStorage.deleteFile(avatarFile.path)
-      throw new AppError("Este e-mail já está em uso.", 401);
+      throw new AppError("This email is already in use.", 401);
     }
 
     const checkUserTelExists = await prisma.users.findUnique({
@@ -62,7 +62,7 @@ export class UsersController {
 
     if (checkUserTelExists) {
       await diskStorage.deleteFile(avatarFile.path)
-      throw new AppError("Este telefone já está em uso.", 401);
+      throw new AppError("This phone is already in use.", 401);
     }
 
     const hashedPassword = await hash(password, 8);

@@ -8,7 +8,7 @@ export async function ensureAuthenticated(request: Request, response: Response, 
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new AppError("JWT token não informado", 401);
+    throw new AppError("JWT token not provided", 401);
   }
 
   const [, token] = authHeader.split(" ");
@@ -17,7 +17,7 @@ export async function ensureAuthenticated(request: Request, response: Response, 
     const { sub: user_id } = verify(token, authConfig.jwt.secret);
 
     if (typeof user_id !== 'string') {
-      throw new AppError("Falha ao verificar JWT Token", 401)
+      throw new AppError("Failed to verify JWT Token", 401)
     }
 
     request.user = {
@@ -26,6 +26,6 @@ export async function ensureAuthenticated(request: Request, response: Response, 
 
     return next();
   } catch {
-    throw new AppError("token.invalid", 401);
+    throw new AppError("Invalid token", 401);
   }
 }
