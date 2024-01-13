@@ -1,38 +1,34 @@
-<p align="center">
-  <img alt="Rocketseat Education" src="https://avatars.githubusercontent.com/u/69590972?s=200&v=4" width="100px" />
-</p>
+# Marketspace API
+## The App
+Add your products to be sold or traded. Provide images, if its new or used and the payment methods you accept. Search for products from other sellers.
 
-<p align="center">
-  <img src="https://img.shields.io/static/v1?label=Rocketseat&message=Education&color=8257e5&labelColor=202024" alt="Rocketseat Project" />
-  <a href="LICENSE"><img  src="https://img.shields.io/static/v1?label=License&message=MIT&color=8257e5&labelColor=202024" alt="License"></a>
-</p>
+### Previews
+<div style="display: flex; gap: 0.5rem; flex-direction: column">
+<div style="display: flex; gap: 0.5rem">
+  <img height="560" alt="" title="" src="./assets/previews/Simulator Screenshot - iPhone 15 Pro - 2023-12-11 at 13.19.30.png">
+  <img height="560" alt="" title="" src="./assets/previews/Simulator Screenshot - iPhone 15 Pro - 2023-12-11 at 13.19.37.png">
+</div>
+<div style="display: flex; gap: 0.5rem">
+  <img height="560" alt="" title="" src="./assets/previews/Simulator Screenshot - iPhone 15 Pro - 2023-12-11 at 13.18.48.png">
+  <img height="560" alt="" title="" src="./assets/previews/Simulator Screenshot - iPhone 15 Pro - 2023-12-11 at 13.18.54.png">
+</div>
+</div>
+
+### Techs
+1. React Native
+2. React
+3. Typescript
+4. Gluestack UI
+5. Phosphor Icons
 
 
-## 💻 Projeto
-
-ignite-rn-2022-challenge-marketspace-api
-
-## 📝 Licença
-
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-<p align="center">
-  Feito com 💜 by Rocketseat
-</p>
-
-
-<!--START_SECTION:footer-->
-
-<br />
-<br />
-
-<p align="center">
-  <a href="https://discord.gg/rocketseat" target="_blank">
-    <img align="center" src="https://storage.googleapis.com/golden-wind/comunidade/rodape.svg" alt="banner"/>
-  </a>
-</p>
-
-<!--END_SECTION:footer-->
-
+### Steps
+1. Clone this repository;
+2. Run your preferred command to install dependencies:
+- `npm install`
+- `yarn install` or `yarn`
+3. Run the server with:
+- `npm run dev`
+- `yarn run dev` or `yarn dev`
+4. Clone the backend repository and follow its steps:
+[Frontend](https://github.com/arthurrios/marketspace-mobile)
