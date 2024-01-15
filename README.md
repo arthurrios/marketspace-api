@@ -20,6 +20,7 @@ Add your products to be sold or traded. Provide images, if its new or used and t
 3. Typescript
 4. Gluestack UI
 5. Phosphor Icons
+6. React Hook Form
 
 
 ### Steps
